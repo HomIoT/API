@@ -54,3 +54,19 @@ export const UPDATE = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
+
+export const DELETE = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const system = await System.findByIdAndDelete(id);
+
+    if (system === null) {
+      return res.status(404).send({ message: "System not found" });
+    }
+
+    res.status(200).send({ message: "System deleted" });
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};
