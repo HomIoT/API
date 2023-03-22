@@ -46,7 +46,6 @@
     "link-module-alias": "^1.2.0",
     "mongoose": "^6.6.0",
     "payamsms-sdk": "^1.2.4",
-    "rayid": "^1.0.0",
-    "socket.io": "^4.5.4"
+    "rayid": "^1.0.0"
   }
 }
