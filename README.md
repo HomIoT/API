@@ -1,3 +1,3 @@
-# APIoT
+# HomIot - API service
 
-API for an IoT project!
+The **HomIoT** api service source.
