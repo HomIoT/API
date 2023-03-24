@@ -3,6 +3,7 @@
       "baseUrl": "app",
       "paths": {
         "$root/*": ["root/*"],
+        "$api/*": ["api/*"],
         "$connections/*": ["connections/*"],
         "$functions/*": ["functions/*"],
         "$routes/*": ["routes/*"],
