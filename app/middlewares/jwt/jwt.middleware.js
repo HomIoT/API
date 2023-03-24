@@ -4,12 +4,10 @@
 // JWT Middleware.
 // Check the autorization ( Bearer token ).
 
-import { QueryTypes } from "sequelize";
 import JWT from "jsonwebtoken";
 
-import { MySQL } from "$connections/index.js";
+import { User } from "$models/index.js";
 import { appConfig } from "$config/index.js";
-import { exist } from "$functions/index.js";
 
 const jwt = async (req, res, next) => {
   // ----------------------------------------------
@@ -30,14 +28,9 @@ const jwt = async (req, res, next) => {
   try {
     const { id } = JWT.verify(token, appConfig.secret);
 
-    const findUserQury = `SELECT id FROM USER WHERE id = '${id}'`;
+    const user = await User.findById(id);
 
-    const userData = await MySQL.query(findUserQury, {
-      raw: true,
-      type: QueryTypes.SELECT,
-    });
-
-    if (!exist(userData)) {
+    if (user === null) {
       return res.status(401).send({ message: "Unautorized" });
     }
 
