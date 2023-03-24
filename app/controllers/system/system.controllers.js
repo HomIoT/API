@@ -3,7 +3,7 @@ import API from "$api/index.js";
 
 export const ALL = async (req, res) => {
   try {
-    const systems = await System.find();
+    const systems = await System.find().sort({ name: 1 });
 
     res.status(200).send(systems);
   } catch (error) {
