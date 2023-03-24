@@ -9,7 +9,11 @@ const schemaModel = {
     default: "",
     required: true,
   },
-  active: {
+  digital: {
+    type: Number,
+    default: 0,
+  },
+  state: {
     type: Boolean,
     default: false,
   },
