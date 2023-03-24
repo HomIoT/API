@@ -1,4 +1,5 @@
 import { System } from "$models/index.js";
+import API from "$api/index.js";
 
 export const ALL = async (req, res) => {
   try {
@@ -43,13 +44,34 @@ export const UPDATE = async (req, res) => {
   const data = req.body;
 
   try {
-    const system = await System.findByIdAndUpdate(id, data);
+    const system = await System.findById(id);
 
     if (system === null) {
       return res.status(404).send({ message: "System not found" });
     }
 
-    res.status(200).send({ message: "System updated" });
+    try {
+      await API.get("/act", {
+        params: {
+          digital: String(system.digital),
+          state: String(Number(data.state)),
+        },
+      });
+
+      try {
+        const system = await System.findByIdAndUpdate(id, data);
+
+        if (system === null) {
+          return res.status(404).send({ message: "System not found" });
+        }
+
+        res.status(200).send({ message: "System updated" });
+      } catch (error) {
+        res.status(500).send({ message: error.message });
+      }
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
