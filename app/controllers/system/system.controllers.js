@@ -92,3 +92,20 @@ export const DELETE = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
+
+export const RESET = async (req, res) => {
+  try {
+    await System.updateMany(
+      {},
+      {
+        $set: {
+          state: false,
+        },
+      }
+    );
+
+    res.status(200).send({ message: "Systems restarted" });
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};

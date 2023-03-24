@@ -5,6 +5,7 @@ const Router = express.Router();
 
 Router.get("/", System.ALL);
 Router.post("/", System.NEW);
+Router.get("/reset", System.RESET);
 Router.get("/:id", System.SINGLE);
 Router.patch("/:id", System.UPDATE);
 Router.delete("/:id", System.DELETE);
