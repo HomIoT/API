@@ -9,15 +9,16 @@ const schemaModel = {
     default: "",
     required: true,
   },
-  digital: {
-    type: Number,
-    default: 0,
+  password: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  username: {
+    type: String,
+    default: "",
     required: true,
     unique: true,
-  },
-  state: {
-    type: Boolean,
-    default: false,
   },
 };
 
@@ -25,4 +26,4 @@ const schema = new mongooseSchema(schemaModel, {
   timestamps: true,
 });
 
-export default mongodb.model("System", schema);
+export default mongodb.model("User", schema);
